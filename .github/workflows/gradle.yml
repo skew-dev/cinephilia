@@ -22,9 +22,7 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
-    - name: Enter the project folder
-      run: cd server
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: chmod +x server/gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./server/gradlew build

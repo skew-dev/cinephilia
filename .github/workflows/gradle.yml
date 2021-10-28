@@ -23,8 +23,6 @@ jobs:
         distribution: 'adopt'
         cache: gradle
     - name: Grant execute permission for gradlew
-      run: cd server
-      run: chmod +x gradlew
+      run: cd server & chmod +x gradlew
     - name: Build with Gradle
-      run: cd server
-      run: ./gradlew build
+      run: cd server & ./gradlew build

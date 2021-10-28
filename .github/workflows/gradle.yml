@@ -5,7 +5,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, test-gradle-build ]
   pull_request:
     branches: [ main ]
 
@@ -22,8 +22,8 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
-        build-root-directory: server
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: chmod +x server/gradlew
     - name: Build with Gradle
-      run: .gradlew build
+      working-directory: ./server
+      run: ./gradlew build

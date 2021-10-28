@@ -22,7 +22,8 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
+        build-root-directory: server
     - name: Grant execute permission for gradlew
-      run: chmod +x server/gradlew
+      run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./server/gradlew build
+      run: .gradlew build

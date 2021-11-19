@@ -1,0 +1,33 @@
+name: Deploy svelte web
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-deploy:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+      name: Use Node.js ${{ matrix.node-version }}
+    - uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        # cache: 'npm'
+    - run: |
+        cd web
+        npm ci
+        npm run build --if-present
+    - uses: akhileshns/heroku-deploy@v3.12.12 # Deploy to heroku action
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+        heroku_email: ${{secrets.HEROKU_API_EMAIL}}
+        appdir: web/public

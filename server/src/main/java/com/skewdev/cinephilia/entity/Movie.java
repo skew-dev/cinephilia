@@ -1,23 +1,21 @@
 package com.skewdev.cinephilia.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Movie {
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
     private String title;
-    private String release_date;
+    @Column(name = "release_date")
+    private String releaseDate;
     private String overview;
 
     public Movie() {
     }
 
-    public Movie(String title, String release_date, String overview) {
+    public Movie(String title, String releaseDate, String overview) {
         this.title = title;
-        this.release_date = release_date;
+        this.releaseDate = releaseDate;
         this.overview = overview;
     }
 
@@ -37,12 +35,12 @@ public class Movie {
         this.title = title;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(String release_date) {
+        this.releaseDate = release_date;
     }
 
     public String getOverview() {
@@ -58,7 +56,7 @@ public class Movie {
         return "Movie{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", releaseDate='" + release_date + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
                 ", overview='" + overview + '\'' +
                 '}';
     }

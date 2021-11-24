@@ -54,7 +54,7 @@ public class MovieController {
         Movie updatedMovie = movieRepository.findById(id)
                 .map(m->{
                     m.setTitle(newMovie.getTitle());
-                    m.setRelease_date(newMovie.getRelease_date());
+                    m.setReleaseDate(newMovie.getReleaseDate());
                     m.setOverview(newMovie.getOverview());
                     return movieRepository.save(m);
                 })

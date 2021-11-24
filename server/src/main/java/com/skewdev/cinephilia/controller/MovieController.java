@@ -3,6 +3,7 @@ package com.skewdev.cinephilia.controller;
 import com.skewdev.cinephilia.entity.Movie;
 import com.skewdev.cinephilia.exception.MovieNotFoundException;
 import com.skewdev.cinephilia.repository.MovieRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -71,7 +72,12 @@ public class MovieController {
 
     @DeleteMapping("/movies/{id}")
     ResponseEntity<?> deleteMovie(@PathVariable Long id){
-        movieRepository.deleteById(id);
+        try{
+            movieRepository.deleteById(id);
+        }catch (EmptyResultDataAccessException ex){
+            throw new MovieNotFoundException(id);
+        }
+
         return  ResponseEntity.noContent().build();
     }
 }

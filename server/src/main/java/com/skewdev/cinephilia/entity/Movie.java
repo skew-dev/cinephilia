@@ -1,14 +1,40 @@
 package com.skewdev.cinephilia.entity;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-@Entity
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity(name = "movie")
+@Table(name = "movie")
 public class Movie {
-    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "title", nullable = false)
     private String title;
-    @Column(name = "release_date")
+
+    @JsonProperty("release_date")
+    @Column(name = "release_date", nullable = false)
     private String releaseDate;
+
+    @Column(name = "overview", nullable = false)
     private String overview;
+
+    @JsonProperty("created_at")
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @JsonProperty("updated_at")
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     public Movie() {
     }
@@ -49,6 +75,22 @@ public class Movie {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override

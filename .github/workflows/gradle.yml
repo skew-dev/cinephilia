@@ -17,9 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup PostgreSQL with PostgreSQL extensions and unprivileged user
-  # You may pin to the exact commit or the version.
-  # uses: Daniel-Marynicz/postgresql-action@0dcc196f0ddffbdf095921877c6577132ab35756
-    - uses: Daniel-Marynicz/postgresql-action@0.1.0
+      uses: Daniel-Marynicz/postgresql-action@0.1.0
       with:
         # Docker postgres image tag for available image tags please see https://hub.docker.com/_/postgres
         #postgres_image_tag: # optional, default is latest

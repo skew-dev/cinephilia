@@ -22,11 +22,11 @@ jobs:
         # Docker postgres image tag for available image tags please see https://hub.docker.com/_/postgres
         #postgres_image_tag: # optional, default is latest
         # POSTGRES_USER - create the user with the superuser power
-        #postgres_user: # optional, default is postgres
+        postgres_user: cinephiler-dev
         # POSTGRES_DB - postgres database
-        postgres_db: mydb
+        postgres_db: cinephiliadb
         # POSTGRES_PASSWORD - superuser password
-        postgres_password: password
+        postgres_password: cinephilia-pass-dev
         # POSTGRES_EXTENSIONS - List of postgres extensions separated by space to install in template1 database
         #postgres_extensions: # optional
         # APP_USER - unprivileged postgres user

@@ -8,4 +8,6 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_PASSWORD: cinephilia-pass
+      POSTGRES_PASSWORD: cinephilia-pass-dev
+      POSTGRES_USER: cinephiler-dev
+      POSTGRES_DB: cinephiliadb

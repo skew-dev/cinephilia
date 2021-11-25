@@ -16,6 +16,29 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Setup PostgreSQL with PostgreSQL extensions and unprivileged user
+  # You may pin to the exact commit or the version.
+  # uses: Daniel-Marynicz/postgresql-action@0dcc196f0ddffbdf095921877c6577132ab35756
+    - uses: Daniel-Marynicz/postgresql-action@0.1.0
+      with:
+        # Docker postgres image tag for available image tags please see https://hub.docker.com/_/postgres
+        #postgres_image_tag: # optional, default is latest
+        # POSTGRES_USER - create the user with the superuser power
+        #postgres_user: # optional, default is postgres
+        # POSTGRES_DB - postgres database
+        postgres_db: mydb
+        # POSTGRES_PASSWORD - superuser password
+        postgres_password: password
+        # POSTGRES_EXTENSIONS - List of postgres extensions separated by space to install in template1 database
+        #postgres_extensions: # optional
+        # APP_USER - unprivileged postgres user
+        #app_user: # optional, default is app
+        # APP_PASSWORD_USER - password for unprivileged postgres user
+        #app_user_password: # optional, default is app
+        # APP_DB - database or list of databases separated by space for unprivileged postgres user
+        #app_db: # optional, default is app
+        # EXPOSED_POSTGRES_PORT - exposed postgres port
+        #exposed_postgres_port: # optional, default is 5432
     - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:

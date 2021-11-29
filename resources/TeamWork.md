@@ -4,7 +4,7 @@ The roles were assigned according to each member's technical abilities, consider
 * **Manuel Antonio Cituk Martínez:** Team leader - DevOps
 * **Jorge Teodoro Dawn Rodríguez:** Backend development (Authentication/Authorization)
 * **Rodrigo Alejandro Castrejón Cervantes:** Overall backend development
-* **Gabriel Nayib Castul Lazo:** Frontend development
+* **Gabriel Nayib Castul Lazo:** Backend development
 * **Daniel Pliego Vega:** Frontend design and development
 
 ## Responsibilities and Contributions

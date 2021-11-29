@@ -1,16 +1,19 @@
-# Requirements
 This project was designed to test our Software Development abilities, so our mentors chose most of the requirements. Nonetheless, we did have to define and prioritize them, as it is a crucial part of our process.
 
 ## Functional Requirements
-* The user must be able to browse the entire movie catalogue.
-* The user must be able to add a new movie.
-* The user must be able to review a movie.
-* The user must be able to rate a movie.
-* The user must be able to update or delete any of their reviews.
-* The user could have a public profile where their reviews are shown.
-* The user should be able to register and login into the platform via third party services.
-* The user should be able to mark another user's review as useful or not useful.
-* A user could see another user’s profile and browse through their reviews.
+### User Requirements
+The user must be able to perform the following:
+* Browse through the entire movie catalogue.
+* Access a specific movie’s written reviews.
+* Register and login into their account.
+* Add a new movie to the movie catalogue.
+* Write a review for a specific movie that exists in the catalogue.
+* Edit and delete any of their previous reviews.
+
+### System Requirements
+* Provide access to the movie catalogue and user reviews to any user, even if they are not logged in to the system.
+* Only allow logged in users to review a movie.
+* Only allow authorized users to add a new movie to the movie catalogue.
 
 ## Prioritization Technique
 To prioritize the requirements of Cinephilia we used the **MoSCoW** technique. This technique categorizes the requirements in four different levels of overall value to the project.

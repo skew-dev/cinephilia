@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ReviewService {
@@ -21,19 +22,18 @@ public class ReviewService {
     }
 
     public Review addNewReview(Review review){
-        final long movieId = review.getMovieId();
-        validateMovie(movieId);
         return reviewRepository.save(review);
     }
 
     public List<Review> getReviewsByMovieId(Long movieId){
-        validateMovie(movieId);
         return reviewRepository.findByMovieId(movieId);
     }
 
-    private void validateMovie(Long movieId){
-        if(!movieRepository.existsById(movieId)){
-            throw new MovieNotFoundException(movieId);
-        }
+    public boolean doesMovieExists(Long movieId){
+        return movieRepository.existsById(movieId);
+    }
+
+    public boolean hasUserReviewedMovie(String userId, Long movieId){
+        return reviewRepository.existsReviewByAuthorIdAndMovieId(userId, movieId);
     }
 }

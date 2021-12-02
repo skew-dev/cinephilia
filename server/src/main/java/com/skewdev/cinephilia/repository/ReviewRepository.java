@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ReviewRepository extends MongoRepository<Review, String> {
     List<Review> findByMovieId(Long movieId);
+    Boolean existsReviewByAuthorIdAndMovieId(String authorId, Long movieId);
 }

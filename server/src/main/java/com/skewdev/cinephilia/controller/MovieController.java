@@ -17,6 +17,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequestMapping("/movies")
 public class MovieController {
     private final MovieRepository movieRepository;
     private final MovieModelAssembler assembler;
@@ -26,7 +27,7 @@ public class MovieController {
         this.assembler = assembler;
     }
 
-    @GetMapping("/movies")
+    @GetMapping()
     public CollectionModel<EntityModel<Movie>> all(){
         List<EntityModel<Movie>> movies = movieRepository.findAll().stream()
                 .map(assembler::toModel)
@@ -35,7 +36,7 @@ public class MovieController {
                 linkTo(methodOn(MovieController.class).all()).withSelfRel());
     }
 
-    @PostMapping("/movies")
+    @PostMapping()
     ResponseEntity<?> newMovie(@RequestBody Movie newMovie){
         EntityModel<Movie> movie = assembler.toModel(movieRepository.save(newMovie));
         return ResponseEntity
@@ -43,14 +44,14 @@ public class MovieController {
                 .body(movie);
     }
 
-    @GetMapping("/movies/{id}")
+    @GetMapping("/{id}")
     public EntityModel<Movie> one(@PathVariable Long id){
         Movie movie = movieRepository.findById(id)
                 .orElseThrow(()-> new MovieNotFoundException(id));
         return assembler.toModel(movie);
     }
 
-    @PutMapping("/movies/{id}")
+    @PutMapping("/{id}")
     ResponseEntity<?> replaceMovie(@RequestBody Movie newMovie, @PathVariable Long id){
         Movie updatedMovie = movieRepository.findById(id)
                 .map(m->{
@@ -70,7 +71,7 @@ public class MovieController {
                 .body(entityModel);
     }
 
-    @DeleteMapping("/movies/{id}")
+    @DeleteMapping("/{id}")
     ResponseEntity<?> deleteMovie(@PathVariable Long id){
         try{
             movieRepository.deleteById(id);

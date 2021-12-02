@@ -17,15 +17,17 @@ public class ReviewController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addNewReview(@PathVariable Long movieId, @RequestBody Review newReview){
+    public ResponseEntity<?> newReview(@PathVariable Long movieId, @RequestBody Review newReview){
         newReview.setMovieId(movieId);
         Review review = reviewService.addNewReview(newReview);
         return ResponseEntity.ok().body(review);
     }
 
     @GetMapping
-    public ResponseEntity<List<Review>> getReviewsForMovie(@PathVariable Long movieId){
+    public ResponseEntity<List<Review>> allReviewsForMovie(@PathVariable Long movieId){
         List<Review> reviews = reviewService.getReviewsByMovieId(movieId);
         return ResponseEntity.ok().body(reviews);
     }
+
+
 }

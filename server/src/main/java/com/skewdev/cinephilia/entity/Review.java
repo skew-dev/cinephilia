@@ -1,8 +1,13 @@
 package com.skewdev.cinephilia.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Document("reviews")
 public class Review {
@@ -17,12 +22,20 @@ public class Review {
 
     private String content;
 
+    @JsonProperty("created_at")
+    private Date createdAt;
+
+    @JsonProperty("updated_at")
+    private Date updatedAt;
+
     public Review() {
+        createdAt = new Date();
+        updatedAt = createdAt;
     }
 
-    public Review(String authorId, Long movieId, String content) {
+    public Review(String authorId, String content) {
+        super();
         this.authorId = authorId;
-        this.movieId = movieId;
         this.content = content;
     }
 
@@ -58,13 +71,31 @@ public class Review {
         this.content = content;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
                 "id='" + id + '\'' +
                 ", authorId='" + authorId + '\'' +
-                ", movieId='" + movieId + '\'' +
+                ", movieId=" + movieId +
                 ", content='" + content + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

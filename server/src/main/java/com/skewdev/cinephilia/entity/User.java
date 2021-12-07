@@ -5,6 +5,9 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 @Entity(name="user")
@@ -32,7 +35,21 @@ public class User {
     @Column(name = "display_name", nullable = true)
     private String displayName;
 
+    @NotBlank(message = "Password is mandatory")
+    private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
+
     public User() {
+    }
+
+    public User(String name, String displayName, String password, Collection<Role> roles) {
+        super();
+        this.username = name;
+        this.displayName = displayName;
+        this.password = password;
+        this.roles = roles;
     }
 
     public User(String username) {
@@ -61,6 +78,22 @@ public class User {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     @Override

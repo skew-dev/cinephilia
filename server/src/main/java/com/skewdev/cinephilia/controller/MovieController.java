@@ -27,7 +27,7 @@ public class MovieController {
         this.assembler = assembler;
     }
 
-    @GetMapping()
+    @GetMapping
     public CollectionModel<EntityModel<Movie>> all(){
         List<EntityModel<Movie>> movies = movieRepository.findAll().stream()
                 .map(assembler::toModel)
@@ -36,7 +36,7 @@ public class MovieController {
                 linkTo(methodOn(MovieController.class).all()).withSelfRel());
     }
 
-    @PostMapping()
+    @PostMapping
     ResponseEntity<?> newMovie(@RequestBody Movie newMovie){
         EntityModel<Movie> movie = assembler.toModel(movieRepository.save(newMovie));
         return ResponseEntity

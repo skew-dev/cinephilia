@@ -1,25 +1,23 @@
+<!-- TEMPORAL -->
 <script>
   export let title;
   export let shortDescription;
   export let rating;
 </script>
 
-<div class="CarouselImage">
-  <div class="container">
-    <div class="title">
-      {title}
-    </div>
-    <div class="short-description">
-      {shortDescription}
-    </div>
-    <div class="rating">{rating}</div>
+<div class=" container content is-large">
+  <div class="block">
+    {title}
   </div>
+  <div class="block">
+    {shortDescription}
+  </div>
+  <div class="block">{rating}</div>
 </div>
 
 <style>
   .container {
-    /* width: 100%; */
-    background-color: aqua;
-    padding: 5rem;
+    text-align: center;
+
   }
 </style>

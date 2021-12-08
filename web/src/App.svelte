@@ -1,9 +1,7 @@
 <script>
   import Carousel from "svelte-carousel";
   import CarouselImage from "./components/CarouselImage.svelte";
-  import MovieGrid from "./components/MovieGrid.svelte";
   import Navbar from "./components/Navbar.svelte";
-
   //Arreglo temparal de peliculas
   let movieList = [
     {
@@ -11,6 +9,8 @@
       rating: 5,
       title: "Interstellar",
       shortDescription: "Pelicula sobre un viaje a las estrellas",
+      imgUrl:
+        "https://www.themoviedb.org/t/p/original/wP0X5iQrlt7ojPmWouYPfy8AQtx.jpg",
     },
     {
       id: 2,
@@ -48,24 +48,8 @@
     pauseOnFocus
   >
     {#each movieList as { id, title, shortDescription, rating }}
+      <!-- TEMPORAL -->
       <CarouselImage {title} {shortDescription} {rating} />
     {/each}
   </Carousel>
-
-  <MovieGrid {movieList} />
 </main>
-
-<style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
-</style>

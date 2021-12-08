@@ -1,6 +1,6 @@
 # Cinephilia
 ## Members
-* Manuel Antonio Cituk Martínez ([@Antonio-Cituk](https://github.com/Antonio-Cituk))
+* Manuel Antonio Cituk Martínez ([@tonycituk](https://github.com/tonycituk))
 * Jorge Teodoro Dawn Rodríguez ([@Teodoro-lab](https://github.com/Teodoro-lab))
 * Rodrigo Alejandro Castrejón Cervantes ([@rcastrejon](https://github.com/rcastrejon))
 * Gabriel Nayib Castul Lazo ([@CL-Nayib](https://github.com/CL-Nayib))

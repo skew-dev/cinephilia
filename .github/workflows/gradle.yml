@@ -60,6 +60,11 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x server/gradlew
     - name: Build with Gradle
+      env: 
+        SQL_URL: ${{ secrets.SQL_URL }}
+        SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
+        SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        NOSQL_URI: ${{ secrets.NOSQL_URI }}
       run: |
         cd server
         ./gradlew build --stacktrace 

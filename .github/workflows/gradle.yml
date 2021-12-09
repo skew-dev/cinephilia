@@ -10,6 +10,14 @@ on:
     branches: [ main ]
 
 jobs:
+  logging:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Testing environment Variables
+      run: |
+        echo "SQL_URL=${{ SQL_URL }}"
+        echo "SQL_USERNAME=${{ SQL_USERNAME }}" 
+        echo "SQL_PASSWORD=${{ SQL_PASSWORD }}" 
   build:
 
     runs-on: ubuntu-latest
@@ -51,8 +59,8 @@ jobs:
         cache: gradle
     - name: Grant execute permission for gradlew
       run: chmod +x server/gradlew
-    - name: Build with Gradle
-      run: |
-        cd server
-        ./gradlew build --stacktrace 
+    #- name: Build with Gradle
+    #  run: |
+    #    cd server
+    #    ./gradlew build --stacktrace 
         

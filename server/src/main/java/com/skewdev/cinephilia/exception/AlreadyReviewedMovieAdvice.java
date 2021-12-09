@@ -1,6 +1,5 @@
-package com.skewdev.cinephilia.controller;
+package com.skewdev.cinephilia.exception;
 
-import com.skewdev.cinephilia.exception.MovieNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -8,12 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class MovieNotFoundAdvice {
-
+public class AlreadyReviewedMovieAdvice {
     @ResponseBody
-    @ExceptionHandler(MovieNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    String movieNotFoundHandler(MovieNotFoundException ex){
-        return ex.getMessage();
-    }
+    @ExceptionHandler(AlreadyReviewedMovieException.class)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    String alreadyReviewedMovieHandler(AlreadyReviewedMovieException ex) {return ex.getMessage();}
 }

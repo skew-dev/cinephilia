@@ -13,7 +13,7 @@ jobs:
     - uses: akhileshns/heroku-deploy@v3.12.12 # Deploy to heroku action
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+        heroku_app_name: ${{secrets.HEROKU_JAVA_APP_NAME}}
         heroku_email: ${{secrets.HEROKU_API_EMAIL}}
         branch: main
         appdir: server

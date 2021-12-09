@@ -15,9 +15,9 @@ jobs:
     steps:
     - name: Testing environment Variables
       run: |
-        echo "SQL_URL: ${{ SQL_URL }}"
-        echo "SQL_USERNAME: ${{ SQL_USERNAME }}" 
-        echo "SQL_PASSWORD: ${{ SQL_PASSWORD }}" 
+        echo "SQL_URL: ${{ secrets.SQL_URL }}"
+        echo "SQL_USERNAME: ${{ secrets.SQL_USERNAME }}" 
+        echo "SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}" 
   build:
 
     runs-on: ubuntu-latest

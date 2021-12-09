@@ -38,7 +38,7 @@ jobs:
         # EXPOSED_POSTGRES_PORT - exposed postgres port
         #exposed_postgres_port: # optional, default is 5432
     - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.7.4
+      uses: timgchile/mongodb-github-action@1.7.4
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
         mongodb-root-username: admin

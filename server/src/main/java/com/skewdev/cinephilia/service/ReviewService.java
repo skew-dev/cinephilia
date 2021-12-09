@@ -1,14 +1,13 @@
 package com.skewdev.cinephilia.service;
 
 import com.skewdev.cinephilia.entity.Review;
-import com.skewdev.cinephilia.exception.MovieNotFoundException;
+import com.skewdev.cinephilia.entity.User;
 import com.skewdev.cinephilia.repository.MovieRepository;
 import com.skewdev.cinephilia.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ReviewService {
@@ -26,14 +25,14 @@ public class ReviewService {
     }
 
     public List<Review> getReviewsByMovieId(Long movieId){
-        return reviewRepository.findByMovieId(movieId);
+        return reviewRepository.findAllByMovieId(movieId);
     }
 
     public boolean doesMovieExists(Long movieId){
         return movieRepository.existsById(movieId);
     }
 
-    public boolean hasUserReviewedMovie(String userId, Long movieId){
-        return reviewRepository.existsReviewByAuthorIdAndMovieId(userId, movieId);
+    public boolean hasUserReviewedMovie(User author, Long movieId){
+        return reviewRepository.existsReviewByAuthor_IdAndMovieId(author.getId(),movieId);
     }
 }

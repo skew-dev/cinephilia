@@ -13,12 +13,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	private final UserDetailsService userDetailsService;
+	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
-	private UserDetailsService userDetailsService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	public SecurityConfig(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+		this.userDetailsService = userDetailsService;
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -29,23 +31,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
-		
+
 		// Guest
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/login").permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/users/register").permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/movies").permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/movies/{movieId}").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/movies/{movieId}/reviews").permitAll();
 
 		// Authenticated
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/movies").authenticated();
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/movies/{movieId}").authenticated();
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/movies/{movieId}").authenticated();
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/movies/{movieId}/reviews").authenticated();
 
-		// Moderator
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/users").hasAnyRole("MODERATOR");
-		http.authorizeRequests().antMatchers(HttpMethod.PATCH, "/movies/{movieId}/reviews").hasAnyRole("MODERATOR");
-		http.authorizeRequests().antMatchers("/roles").hasAnyRole("MODERATOR");
-		http.httpBasic();
+		http.httpBasic().realmName("Cinephilia");
 	}
 }

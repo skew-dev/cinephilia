@@ -1,5 +1,6 @@
 package com.skewdev.cinephilia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -28,14 +29,15 @@ public class User {
     @Column(name="id", updatable = false, nullable = false)
     private UUID id;
 
+    @NotBlank
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     @JsonProperty("display_name")
-    @Column(name = "display_name", nullable = true)
+    @Column(name = "display_name")
     private String displayName;
 
-    @NotBlank(message = "Password is mandatory")
+    @NotBlank
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -56,6 +58,7 @@ public class User {
         this.username = username;
     }
 
+    @JsonIgnore
     public UUID getId() {
         return id;
     }
@@ -88,6 +91,7 @@ public class User {
         this.password = password;
     }
 
+    @JsonIgnore
     public Collection<Role> getRoles() {
         return roles;
     }
@@ -102,6 +106,8 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", displayName='" + displayName + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

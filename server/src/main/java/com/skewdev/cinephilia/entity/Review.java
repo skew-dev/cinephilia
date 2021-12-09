@@ -1,12 +1,11 @@
 package com.skewdev.cinephilia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Document("reviews")
@@ -14,18 +13,19 @@ public class Review {
     @Id
     private String id;
 
-    @JsonProperty("author_id")
-    private String authorId;
-
-    @JsonProperty("movie_id")
+    @JsonProperty(value = "movie_id", access = JsonProperty.Access.READ_ONLY)
     private Long movieId;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Author author;
+
+    @NotBlank
     private String content;
 
-    @JsonProperty("created_at")
+    @JsonProperty(value = "created_at", access = JsonProperty.Access.READ_ONLY)
     private Date createdAt;
 
-    @JsonProperty("updated_at")
+    @JsonProperty(value = "updated_at", access = JsonProperty.Access.READ_ONLY)
     private Date updatedAt;
 
     public Review() {
@@ -33,12 +33,7 @@ public class Review {
         updatedAt = createdAt;
     }
 
-    public Review(String authorId, String content) {
-        super();
-        this.authorId = authorId;
-        this.content = content;
-    }
-
+    @JsonIgnore
     public String getId() {
         return id;
     }
@@ -47,20 +42,20 @@ public class Review {
         this.id = id;
     }
 
-    public String getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
-    }
-
     public Long getMovieId() {
         return movieId;
     }
 
     public void setMovieId(Long movieId) {
         this.movieId = movieId;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public String getContent() {
@@ -91,8 +86,8 @@ public class Review {
     public String toString() {
         return "Review{" +
                 "id='" + id + '\'' +
-                ", authorId='" + authorId + '\'' +
                 ", movieId=" + movieId +
+                ", author=" + author +
                 ", content='" + content + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

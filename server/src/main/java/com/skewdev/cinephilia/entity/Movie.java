@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity(name = "movie")
@@ -14,15 +15,23 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Column(name = "title", nullable = false)
     private String title;
 
+    @NotBlank
     @JsonProperty("release_date")
     @Column(name = "release_date", nullable = false)
     private String releaseDate;
 
+    @NotBlank
     @Column(name = "overview", nullable = false)
     private String overview;
+
+    @NotBlank
+    @JsonProperty("poster_path")
+    @Column(name = "poster_path", nullable = false)
+    private String posterPath;
 
     @JsonProperty("created_at")
     @CreationTimestamp
@@ -39,10 +48,11 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, String releaseDate, String overview) {
+    public Movie(String title, String releaseDate, String overview, String posterPath) {
         this.title = title;
         this.releaseDate = releaseDate;
         this.overview = overview;
+        this.posterPath = posterPath;
     }
 
     public Long getId() {
@@ -75,6 +85,14 @@ public class Movie {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
     public Date getCreatedAt() {

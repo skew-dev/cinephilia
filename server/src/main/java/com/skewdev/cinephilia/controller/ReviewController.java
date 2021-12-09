@@ -1,28 +1,38 @@
 package com.skewdev.cinephilia.controller;
 
+import com.skewdev.cinephilia.entity.Author;
 import com.skewdev.cinephilia.entity.Review;
+import com.skewdev.cinephilia.entity.User;
 import com.skewdev.cinephilia.exception.AlreadyReviewedMovieException;
 import com.skewdev.cinephilia.exception.MovieNotFoundException;
 import com.skewdev.cinephilia.service.ReviewService;
+import com.skewdev.cinephilia.service.UsersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
 @RequestMapping("movies/{movieId}/reviews")
 public class ReviewController {
-    final ReviewService reviewService;
+    private final ReviewService reviewService;
+    final UsersService usersService;
 
-    public ReviewController(ReviewService reviewService) {
+    public ReviewController(ReviewService reviewService, UsersService usersService) {
         this.reviewService = reviewService;
+        this.usersService = usersService;
     }
 
     @PostMapping
-    public ResponseEntity<?> writeReview(@PathVariable Long movieId, @RequestBody Review newReview){
+    public ResponseEntity<?> writeReview(Principal principal, @PathVariable Long movieId, @Valid @RequestBody Review newReview){
         validateMovie(movieId);
-        if (reviewService.hasUserReviewedMovie(newReview.getAuthorId(), movieId))
-            throw new AlreadyReviewedMovieException(newReview.getAuthorId(), movieId);
+        User authenticatedUser = usersService.getUser(principal.getName());
+        newReview.setAuthor(new Author(authenticatedUser));
+
+        if (reviewService.hasUserReviewedMovie(authenticatedUser, movieId))
+            throw new AlreadyReviewedMovieException(newReview.getAuthor().getId().toString(), movieId);
 
         newReview.setMovieId(movieId);
         Review review = reviewService.addNewReview(newReview);

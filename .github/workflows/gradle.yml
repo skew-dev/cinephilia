@@ -37,7 +37,7 @@ jobs:
         #app_db: # optional, default is app
         # EXPOSED_POSTGRES_PORT - exposed postgres port
         #exposed_postgres_port: # optional, default is 5432
-    - name: Start MongoDB
+    - name: Start MongoDB server instance
       uses: timgchile/mongodb-github-action@1.7.4
       with:
         mongodb-version: ${{ matrix.mongodb-version }}

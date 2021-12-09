@@ -69,6 +69,7 @@ jobs:
         SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
         NOSQL_URI: ${{ secrets.NOSQL_URI }}
         NOSQL_DATABASE: ${{ secrets.NOSQL_DATABASE }}
+        SPRING_PROFILE: dev
       run: |
         cd server
         ./gradlew build --stacktrace 

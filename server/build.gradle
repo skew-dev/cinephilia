@@ -4,6 +4,15 @@ plugins {
     id 'java'
 }
 
+jar {
+  manifest {
+    attributes(
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'com.skewdev.cinephilia.CinephiliaApplication'
+    )
+  }
+}
+
 group = 'com.skewdev'
 version = '0.0.1-SNAPSHOT'
 //sourceCompatibility = '11'

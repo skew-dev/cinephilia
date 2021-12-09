@@ -40,7 +40,7 @@ jobs:
     - name: Start MongoDB server instance
       uses: timgchile/mongodb-github-action@1.7.4
       with:
-        mongodb-version: ${{ matrix.mongodb-version }}
+        mongodb-version: 4.4
         mongodb-root-username: admin
         mongodb-root-password: admin
     - name: Set up JDK 11

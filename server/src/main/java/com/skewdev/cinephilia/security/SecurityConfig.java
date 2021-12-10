@@ -42,6 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/movies").authenticated();
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/movies/{movieId}/reviews").authenticated();
 
+		// Moderator
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/movies").hasAnyRole("MODERATOR");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/movies/{movieId}").hasAnyRole("MODERATOR");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/users").hasAnyRole("MODERATOR");
 		http.httpBasic().realmName("Cinephilia");
 	}
 }

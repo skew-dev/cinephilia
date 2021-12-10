@@ -1,6 +1,5 @@
 package com.skewdev.cinephilia.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,6 +9,7 @@ import java.util.Date;
 
 @Document("reviews")
 public class Review {
+    @JsonProperty(value = "id", access = JsonProperty.Access.READ_ONLY)
     @Id
     private String id;
 
@@ -33,7 +33,6 @@ public class Review {
         updatedAt = createdAt;
     }
 
-    @JsonIgnore
     public String getId() {
         return id;
     }

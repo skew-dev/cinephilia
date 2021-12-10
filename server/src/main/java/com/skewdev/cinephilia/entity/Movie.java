@@ -1,5 +1,6 @@
 package com.skewdev.cinephilia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,6 +12,7 @@ import java.util.Date;
 @Entity(name = "movie")
 @Table(name = "movie")
 public class Movie {
+    @JsonProperty(value = "id", access = JsonProperty.Access.READ_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,13 +35,13 @@ public class Movie {
     @Column(name = "poster_path", nullable = false)
     private String posterPath;
 
-    @JsonProperty("created_at")
+    @JsonProperty(value = "created_at", access = JsonProperty.Access.READ_ONLY)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdAt;
 
-    @JsonProperty("updated_at")
+    @JsonProperty(value = "updated_at", access = JsonProperty.Access.READ_ONLY)
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")

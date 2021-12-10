@@ -36,4 +36,16 @@ public class MovieController {
                 .orElseThrow(()-> new MovieNotFoundException(id));
         return ResponseEntity.ok().body(movie);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Movie> replaceMovie(@Valid @RequestBody Movie newMovie, @PathVariable Long id){
+        Movie updatedMovie = movieService.replaceMovie(newMovie, id);
+        return ResponseEntity.ok().body(updatedMovie);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteMovie(@PathVariable Long id){
+        movieService.deleteMovie(id);
+        return ResponseEntity.noContent().build();
+    }
 }

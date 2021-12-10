@@ -14,6 +14,7 @@ import java.util.UUID;
 @Entity(name="user")
 @Table(name="user_account")
 public class User {
+    @JsonProperty(value = "id", access = JsonProperty.Access.READ_ONLY)
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -40,6 +41,7 @@ public class User {
     @NotBlank
     private String password;
 
+    @JsonProperty(value = "roles", access = JsonProperty.Access.READ_ONLY)
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
@@ -58,7 +60,6 @@ public class User {
         this.username = username;
     }
 
-    @JsonIgnore
     public UUID getId() {
         return id;
     }
@@ -91,7 +92,6 @@ public class User {
         this.password = password;
     }
 
-    @JsonIgnore
     public Collection<Role> getRoles() {
         return roles;
     }

@@ -5,8 +5,15 @@
 
 <div class="MovieGrid">
   <div class="container">
-    {#each movies as { title, rating, overview, poster_path, created_at }}
-      <MovieCard {title} {rating} {overview} {poster_path} {created_at} />
+    {#each movies as { title, rating, overview, poster_path, created_at, release_date }}
+      <MovieCard
+        {title}
+        {rating}
+        {overview}
+        {poster_path}
+        {created_at}
+        {release_date}
+      />
     {/each}
   </div>
 </div>

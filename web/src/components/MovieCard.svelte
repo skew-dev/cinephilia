@@ -4,15 +4,13 @@
   export let overview;
   export let poster_path;
   export let created_at;
+  export let release_date
   let date = new Date(created_at);
 </script>
 
 <div class="card">
   <div class="card-content">
     <div class="columns is-vcentered">
-      <div class="column is-6">
-        <p class="bd-notification is-primary">{title}</p>
-      </div>
       <div class="columns is-vcentered">
         <div class="column">
           <button class="button"> Review </button>
@@ -32,6 +30,7 @@
     <div class="media">
       <div class="media-content">
         <p class="title is-4">{title}</p>
+        <p class="subtitle is-6">{release_date}</p>
       </div>
     </div>
 

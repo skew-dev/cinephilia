@@ -1,6 +1,5 @@
 package com.skewdev.cinephilia.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -27,7 +26,7 @@ public class Movie {
     private String releaseDate;
 
     @NotBlank
-    @Column(name = "overview", nullable = false)
+    @Column(name = "overview", nullable = false, columnDefinition = "text")
     private String overview;
 
     @NotBlank

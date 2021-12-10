@@ -1,22 +1,22 @@
 <!-- TEMPORAL -->
 <script>
-  export let imgUrl;
+  export let poster_path;
   export let title;
-  export let shortDescription;
+  export let overview;
   export let rating;
 
   import Stars from "./Stars/Stars.svelte";
 </script>
 
 <div class=" container content is-medium">
-  <img src={imgUrl} />
+  <img src={poster_path} alt={title} />
   <div class="Content">
     <div class="title">
       <h4>{title}</h4>
     </div>
     <div class="shortDescription">
       <h5>
-        {shortDescription}
+        {overview}
       </h5>
     </div>
 

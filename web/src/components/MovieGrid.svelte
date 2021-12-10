@@ -1,12 +1,19 @@
 <script>
-  export let movieList;
+  export let movies;
   import MovieCard from "./MovieCard.svelte";
 </script>
 
 <div class="MovieGrid">
   <div class="container">
-    {#each movieList as { title, rating, shortDescription, imgUrl }}
-      <MovieCard {title} {rating} {shortDescription} {imgUrl} />
+    {#each movies as { title, rating, overview, poster_path, created_at, release_date }}
+      <MovieCard
+        {title}
+        {rating}
+        {overview}
+        {poster_path}
+        {created_at}
+        {release_date}
+      />
     {/each}
   </div>
 </div>

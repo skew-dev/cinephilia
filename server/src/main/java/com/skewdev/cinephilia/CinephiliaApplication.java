@@ -26,7 +26,7 @@ public class CinephiliaApplication {
         return new BCryptPasswordEncoder();
     }
 
-    /*@Bean
+    @Bean
     CommandLineRunner run(UsersService service, MovieService movieService) {
         return args -> {
 
@@ -41,6 +41,6 @@ public class CinephiliaApplication {
 
             service.addRoleToUser("teo", "ROLE_MODERATOR");
         };
-    }*/
+    }
 
 }

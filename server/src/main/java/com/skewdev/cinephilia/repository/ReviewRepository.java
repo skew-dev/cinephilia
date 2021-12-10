@@ -1,7 +1,6 @@
 package com.skewdev.cinephilia.repository;
 
 import com.skewdev.cinephilia.entity.Review;
-import com.skewdev.cinephilia.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

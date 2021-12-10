@@ -5,8 +5,8 @@
 
 <div class="MovieGrid">
   <div class="container">
-    {#each movieList as { title, rating, shortDescription }}
-      <MovieCard {title} {rating} {shortDescription} />
+    {#each movieList as { title, rating, shortDescription, imgUrl }}
+      <MovieCard {title} {rating} {shortDescription} {imgUrl} />
     {/each}
   </div>
 </div>

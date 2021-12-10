@@ -19,8 +19,7 @@
         {shortDescription}
       </h5>
     </div>
-  </div>
-  <div class="rating">
+
     <Stars {rating} />
   </div>
 </div>
@@ -40,7 +39,7 @@
 
   .Content {
     position: absolute;
-    top: 70%;
+    top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
   }

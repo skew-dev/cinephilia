@@ -2,6 +2,7 @@
   import Carousel from "svelte-carousel";
   import CarouselImage from "./components/Carousel/CarouselImage.svelte";
   import Navbar from "./components/Navbar/Navbar.svelte";
+  import MovieGrid from "./components/MovieGrid.svelte";
   //Arreglo temparal de peliculas
   // TEMPORAL
   let movieList = [
@@ -61,4 +62,5 @@
       <CarouselImage {title} {shortDescription} {rating} {imgUrl} />
     {/each}
   </Carousel>
+  <MovieGrid {movieList} />
 </main>

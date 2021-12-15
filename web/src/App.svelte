@@ -23,12 +23,12 @@
   async function hashchange() {
     // the poor man's router! stolen
     const path = window.location.pathname;
-    console.log(path)
+    console.log(path);
 
     if (path.startsWith("/movie")) {
       const id = path.slice(7);
-      console.log(id)
-      await populateMovieinfo(id)
+      console.log(id);
+      await populateMovieinfo(id);
     } else {
       await populateMovies();
     }
@@ -40,7 +40,7 @@
 <main>
   <Navbar />
   {#if movie}
-  <Movie {movie} />
+    <Movie {movie} />
   {:else if movies}
     <Carousel
       autoplay

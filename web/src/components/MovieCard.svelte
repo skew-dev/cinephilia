@@ -1,5 +1,6 @@
 <script>
   export let title;
+  export let id;
   //posiblemente se podria cambiar por una descripcion larga
   export let overview;
   export let poster_path;
@@ -13,7 +14,7 @@
     <div class="columns is-vcentered">
       <div class="columns is-vcentered">
         <div class="column">
-          <button class="button"> Review </button>
+          <a href="movie/{id}" class="button"> Reviews </a>
         </div>
         <div class="column">
           <button class="button"> Rate </button>
